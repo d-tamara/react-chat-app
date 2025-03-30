@@ -1,11 +1,11 @@
 {
   "users": [
-    {"id": 2, "name": "Bob", "status": "online"},
-    {"id": 3, "name": "Charlie", "status": "online"},
-    {"id": 4, "name": "Dana", "status": "offline"},
-    {"id": 5, "name": "Eve", "status": "online"},
-    {"id": 6, "name": "Frank", "status": "offline"},
-    {"id": 7, "name": "Grace", "status": "online"}
+    {"id": 2, "name": "Bob Smith", "status": "online"},
+    {"id": 3, "name": "Charlie Johnson", "status": "online"},
+    {"id": 4, "name": "Dana Lee", "status": "offline"},
+    {"id": 5, "name": "Eve Turner", "status": "online"},
+    {"id": 6, "name": "Frank Brown", "status": "offline"},
+    {"id": 7, "name": "Grace Davis", "status": "online"}
   ],
   "messages": [
     {"id": 1, "userId": 1, "text": "Hello, Bob!"},

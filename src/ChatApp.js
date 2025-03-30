@@ -29,8 +29,8 @@ function ChatApp() {
         e.preventDefault();
         const myMessage = {
             id: messages.length + 1,
-            userId: 1,  // Assuming '1' is the ID of the current user
-            receiverId: selectedUserId,  // ID of the user to whom the message is sent
+            userId: 1,
+            receiverId: selectedUserId,
             text: newMessage,
             likes: 0,
             likedByCurrentUser: false
@@ -62,7 +62,10 @@ function ChatApp() {
             <div className="message-section">
                 {selectedUserId && (
                     <>
-                        <h2>{selectedUser ? selectedUser.name : 'Select a user'}</h2>
+                        <div className="user-heading">
+                            <img src="/fallback-person.jpg" alt="Profile" />
+                            <h2 data-status={selectedUser.status}>{selectedUser.name} </h2>
+                        </div>
                         <MessageList messages={messages.filter(msg =>
                             (msg.userId === 1 && msg.receiverId === selectedUserId) ||
                             (msg.userId === selectedUserId && msg.receiverId === 1))} />
