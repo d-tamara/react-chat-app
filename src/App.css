@@ -1,38 +1,152 @@
-.App {
+
+body {
   text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+  .chat-app {
+    background-color: #F0F0F0;
+    display: flex;
+    overflow: hidden;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    .user-list {
+      width: 30%;
+      padding: 3rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .user-item {
+        color: #4399FF;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        font-family: 'Inter';
+        position: relative;
+        width: fit-content;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: -2rem;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+
+        &[data-status="offline"] {
+          &:after {
+            background: #FF5733;
+          }
+        }
+
+          &[data-status="online"] {
+            &:after {
+              background: #33EC23;
+          }
+
+        }
+      }
+    }
+
+    .message-section {
+      width: 50%;
+      background: white;
+      padding-top: 3rem;
+      position: relative;
+      height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+
+      .message-list {
+        .message-item {
+          margin-bottom: 1.5rem;
+          display: flex;
+          justify-content: flex-end;
+          padding: 0 3rem;
+          .message-text {
+            text-align: right;
+            width: fit-content;
+            color: white;
+            border-radius: 10px 10px 0 10px;
+            background: #4399FF;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            .heart-icon {
+              position: absolute;
+              bottom: 0;
+              right: -0.75rem;
+              font-size: 0.75rem;
+              color: red;
+              background: white;
+              border-radius: 50%;
+              transition: transform 0.3s ease, opacity 0.3s ease;
+              transform: scale(0);
+              opacity: 0;
+            }
+          }
+          &.mine {
+            justify-content: flex-start;
+            .message-text {
+              text-align: left;
+              color: black;
+              border-radius: 10px 10px 10px 0;
+              background: #DCE8FF;
+            }
+          }
+        }
+      }
+
+
+      form {
+        background: #DCE8FF;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 0;
+        margin-top: 0;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        input {
+          padding: 0.75rem;
+          width: 80%;
+          border: none;
+          border-radius: 10px;
+        }
+        button[type="submit"] {
+          background: #699BF7;
+          border-radius: 10px;
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.animate {
+  animation: pop-in 0.5s forwards;
 }
