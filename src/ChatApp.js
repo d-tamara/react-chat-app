@@ -14,6 +14,9 @@ function ChatApp() {
             .then(data => {
                 setUsers(data.users);
                 setMessages(data.messages);
+                if (data.users.length > 0) {
+                    setSelectedUserId(data.users[0].id);
+                }
             })
             .catch(error => console.error('Error:', error));
     }, []);
@@ -33,19 +36,17 @@ function ChatApp() {
             likedByCurrentUser: false
         };
 
-        // Update messages state by adding the new message
         setMessages(prevMessages => [...prevMessages, myMessage]);
-        setNewMessage('');  // Clear input after sending
+        setNewMessage('');
 
-        // Simulate receiving a response
         setTimeout(() => {
             const randomMessageIndex = Math.floor(Math.random() * messages.length);
             const randomMessage = messages[randomMessageIndex];
             const responseMessage = {
                 ...randomMessage,
                 id: messages.length + 2,
-                userId: selectedUserId,  // Simulated response from the selected user
-                receiverId: 1,  // Response to the current user
+                userId: selectedUserId,
+                receiverId: 1,
                 likedByCurrentUser: false
             };
 
@@ -53,16 +54,15 @@ function ChatApp() {
         }, 1000);
     };
 
-    // Find the selected user by ID to display the name
     const selectedUser = users.find(user => user.id === selectedUserId);
 
     return (
         <div className="chat-app">
-            <UserList users={users} onSelectUser={selectUser} />
+            <UserList users={users} onSelectUser={selectUser} selectedUserId={selectedUserId} />
             <div className="message-section">
                 {selectedUserId && (
                     <>
-                        <h2>{`${selectedUser.name}`}</h2>
+                        <h2>{selectedUser ? selectedUser.name : 'Select a user'}</h2>
                         <MessageList messages={messages.filter(msg =>
                             (msg.userId === 1 && msg.receiverId === selectedUserId) ||
                             (msg.userId === selectedUserId && msg.receiverId === 1))} />
